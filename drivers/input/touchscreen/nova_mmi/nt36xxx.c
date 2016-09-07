@@ -183,7 +183,7 @@ int32_t CTP_I2C_WRITE(struct i2c_client *client, uint16_t address, uint8_t *buf,
 	msg.len   = len;
 	msg.buf   = buf;
 
-	while (retries < 5) {
+	while (retries < 2) {
 		ret = i2c_transfer(client->adapter, &msg, 1);
 		if (ret == 1)
 			break;
@@ -1154,8 +1154,8 @@ static int8_t nvt_ts_check_chip_ver_trim(void)
 #endif
 	nvt_bootloader_reset(); /* NOT in retry loop*/
 
-	//---Check for 5 times---
-	for (retry = 5; retry > 0; retry--) {
+	//---Check for 2 times---
+	for (retry = 2; retry > 0; retry--) {
 		nvt_sw_reset_idle();
 
 		buf[0] = 0x00;
