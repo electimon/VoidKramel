@@ -823,6 +823,7 @@ struct mdss_panel_info {
 	bool bklt_dcs_2bytes_enabled;
 
 	struct panel_param *param[PARAM_ID_NUM];
+	bool hbm_restore;
 };
 
 struct mdss_panel_timing {
