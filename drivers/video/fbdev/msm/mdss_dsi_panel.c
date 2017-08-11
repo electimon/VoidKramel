@@ -2322,6 +2322,9 @@ static int mdss_dsi_parse_panel_features(struct device_node *np,
 			pinfo->disp_on_check_val = 0x9c;
 	}
 
+	pinfo->panel_reply_long_response = of_property_read_bool(np,
+					"qcom,mdss-dsi-panel-reply-long-response");
+
 	if (ctrl->disp_en_gpio <= 0) {
 		ctrl->disp_en_gpio = of_get_named_gpio(
 			np,

@@ -787,6 +787,7 @@ struct mdss_panel_info {
 	struct mdss_panel_hdr_properties hdr_properties;
 
 	u32 disp_on_check_val;
+	bool panel_reply_long_response;
 };
 
 struct mdss_panel_timing {
