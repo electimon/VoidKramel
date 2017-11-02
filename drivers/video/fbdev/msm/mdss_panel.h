@@ -788,6 +788,7 @@ struct mdss_panel_info {
 
 	u32 disp_on_check_val;
 	bool panel_reply_long_response;
+	bool bklt_dcs_2bytes_enabled;
 };
 
 struct mdss_panel_timing {
