@@ -350,6 +350,7 @@ struct mmi_params {
 	bool			init_done;
 	int			base_fv_mv;
 	int			vfloat_comp_mv;
+	int			batt_health;
 };
 
 struct smb_charger {

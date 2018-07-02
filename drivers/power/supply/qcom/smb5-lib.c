@@ -1612,6 +1612,7 @@ int smblib_get_prop_batt_health(struct smb_charger *chg,
 	else
 		val->intval = POWER_SUPPLY_HEALTH_GOOD;
 
+	val->intval = chg->mmi.batt_health;
 done:
 	return rc;
 }
@@ -4896,6 +4897,8 @@ end_rate_check:
 #define HEARTBEAT_DELAY_MS 60000
 #define HEARTBEAT_HOLDOFF_MS 10000
 #define HYST_STEP_MV 50
+#define WARM_TEMP 45
+#define COOL_TEMP 0
 static void mmi_heartbeat_work(struct work_struct *work)
 {
 	struct smb_charger *chip = container_of(work,
@@ -5156,6 +5159,23 @@ static void mmi_heartbeat_work(struct work_struct *work)
 		pr_err("Problem setting USB ICL %d\n", target_usb);
 		goto end_hb;
 	}
+
+	if (chip->mmi.pres_temp_zone == ZONE_HOT) {
+		chip->mmi.batt_health = POWER_SUPPLY_HEALTH_OVERHEAT;
+	} else if (chip->mmi.pres_temp_zone == ZONE_COLD) {
+		chip->mmi.batt_health = POWER_SUPPLY_HEALTH_COLD;
+	} else if (batt_temp >= WARM_TEMP) {
+		if (chip->mmi.pres_chrg_step == STEP_STOP)
+			chip->mmi.batt_health = POWER_SUPPLY_HEALTH_OVERHEAT;
+		else
+			chip->mmi.batt_health = POWER_SUPPLY_HEALTH_GOOD;
+	} else if (batt_temp <= COOL_TEMP) {
+		if (chip->mmi.pres_chrg_step == STEP_STOP)
+			chip->mmi.batt_health = POWER_SUPPLY_HEALTH_COLD;
+		else
+			chip->mmi.batt_health = POWER_SUPPLY_HEALTH_GOOD;
+	} else
+		chip->mmi.batt_health = POWER_SUPPLY_HEALTH_GOOD;
 
 	pr_warn("PMI Input %d mA, USBC CL %d mA, FV %d mV, FCC %d mA\n",
 		 target_usb, cl_cc, target_fv, target_fcc);
