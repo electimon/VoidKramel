@@ -235,6 +235,7 @@
 				<45 0 3000 3000>,
 				<60 4200 2500 0>;
 	qcom,battery-data = <&mtp_batterydata>;
+	qcom,vfloat-comp-uv = <20000>;
 };
 
 &i2c_1 {
