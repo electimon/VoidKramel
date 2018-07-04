@@ -348,6 +348,7 @@ struct mmi_params {
 	int			charger_rate;
 	bool			hvdcp3_con;
 	bool			init_done;
+	int			vbus_inc_cnt;
 	int			base_fv_mv;
 	int			vfloat_comp_mv;
 	int			batt_health;
