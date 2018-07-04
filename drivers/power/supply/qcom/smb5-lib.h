@@ -348,6 +348,8 @@ struct mmi_params {
 	int			charger_rate;
 	bool			hvdcp3_con;
 	bool			init_done;
+	int			base_fv_mv;
+	int			vfloat_comp_mv;
 };
 
 struct smb_charger {
