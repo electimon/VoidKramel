@@ -3719,7 +3719,13 @@ static void typec_src_removal(struct smb_charger *chg)
 
 	chg->typec_legacy = false;
 
+	chg->mmi.charger_rate = POWER_SUPPLY_CHARGE_RATE_NONE;
 	chg->mmi.hvdcp3_con = false;
+	chg->mmi.vbus_inc_cnt = 0;
+	vote(chg->awake_votable, HEARTBEAT_VOTER, true, true);
+	cancel_delayed_work(&chg->mmi.heartbeat_work);
+	schedule_delayed_work(&chg->mmi.heartbeat_work,
+			      msecs_to_jiffies(0));
 }
 
 static void smblib_handle_rp_change(struct smb_charger *chg, int typec_mode)
