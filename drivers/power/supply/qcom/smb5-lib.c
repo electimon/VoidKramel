@@ -4066,8 +4066,8 @@ irqreturn_t switcher_power_ok_irq_handler(int irq, void *data)
 	struct smb_charger *chg = irq_data->parent_data;
 	struct storm_watch *wdata = &irq_data->storm_data;
 	int pok_irq = chg->irq_info[SWITCHER_POWER_OK_IRQ].irq;
-	int rc, usb_icl;
-	u8 stat;
+	int rc;
+	u8 stat, susp;
 
 	if (!(chg->wa_flags & BOOST_BACK_WA))
 		return IRQ_HANDLED;
@@ -4078,9 +4078,14 @@ irqreturn_t switcher_power_ok_irq_handler(int irq, void *data)
 		return IRQ_HANDLED;
 	}
 
+	rc = smblib_read(chg, USBIN_CMD_IL_REG, &susp);
+	if (rc < 0) {
+		smblib_err(chg, "Couldn't read USBIN_CMD_IL rc=%d\n", rc);
+		return IRQ_HANDLED;
+	}
+
 	/* skip suspending input if its already suspended by some other voter */
-	usb_icl = get_effective_result(chg->usb_icl_votable);
-	if ((stat & USE_USBIN_BIT) && usb_icl >= 0 && usb_icl <= USBIN_25MA)
+	if ((stat & USE_USBIN_BIT) && (susp & USBIN_SUSPEND_BIT))
 		return IRQ_HANDLED;
 
 	if (stat & USE_DCIN_BIT)
