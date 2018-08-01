@@ -511,6 +511,7 @@ struct smb_charger {
 	/* Place at end of struct smb_charger as it grows */
 	struct mmi_params	mmi;
 	bool			reverse_boost;
+	bool			suspended;
 
 	/* dual role */
 	bool				dr_supported;
