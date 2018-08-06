@@ -353,6 +353,7 @@ struct mmi_params {
 	int			base_fv_mv;
 	int			vfloat_comp_mv;
 	int			batt_health;
+	bool			mmi_hvdcp_disable;
 };
 
 struct smb_charger {
