@@ -145,6 +145,7 @@ struct qusb_phy {
 	int			tune2_efuse_bit_pos;
 	int			tune2_efuse_num_of_bits;
 	int			tune2_efuse_correction;
+	u32			tune2_host_override;
 
 	bool			power_enabled;
 	bool			cable_connected;
@@ -516,6 +517,15 @@ static int qusb_phy_init(struct usb_phy *phy)
 		pr_debug("%s(): Programming TUNE2 parameter as:%x\n", __func__,
 				qphy->tune2_val);
 		writel_relaxed(qphy->tune2_val,
+				qphy->base + QUSB2PHY_PORT_TUNE2);
+	}
+
+	if (!tune2 &&
+	    qphy->tune2_host_override &&
+	    (qphy->phy.flags & PHY_HOST_MODE)) {
+		pr_debug("%s(): Host TUNE2 override value:%x\n", __func__,
+				qphy->tune2_host_override);
+		writel_relaxed(qphy->tune2_host_override,
 				qphy->base + QUSB2PHY_PORT_TUNE2);
 	}
 
@@ -964,6 +974,10 @@ static int qusb_phy_probe(struct platform_device *pdev)
 			}
 		}
 	}
+
+	of_property_read_u32(dev->of_node,
+			"qcom,tune2-host-override",
+			&qphy->tune2_host_override);
 
 	res = platform_get_resource_byname(pdev, IORESOURCE_MEM,
 							"ref_clk_addr");
