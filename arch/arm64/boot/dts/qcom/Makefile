@@ -52,6 +52,8 @@ sdm632-ocean-na-pvt1-overlay.dtbo-base := \
 
 sdm632-ginna-evt-overlay.dtbo-base := \
 	sdm632-ginna-base.dtb
+sdm632-ginna-evt3-overlay.dtbo-base := \
+	sdm632-ginna-base.dtb
 
 sdm632-channel-pvt-overlay.dtbo-base := \
 	sdm632-channel-base.dtb
