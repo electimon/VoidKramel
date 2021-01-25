@@ -24,3 +24,25 @@
 	qcom,board-id = <0x4D 0xC000>;
 };
 
+/*
+ * Ginna HW rev PVT specific changes go here
+ */
+&soc {
+	sound {
+		qcom,msm-ext-pa = "quinary";
+		aw,have-aw882xx;
+	};
+};
+
+&i2c_2 {
+
+	aw882xx:aw882xx_smartpa@34 {
+		compatible = "awinic,aw882xx_smartpa";
+		reg = <0x34>;
+		reset-gpio = <&tlmm 94 0>;
+		irq-gpio = <&tlmm 63 0x2008>;
+		monitor-flag = <1>;
+		monitor-timer-val = <3000>;
+		status = "ok";
+	};
+};
