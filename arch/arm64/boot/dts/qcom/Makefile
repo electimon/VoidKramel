@@ -15,17 +15,7 @@ dtbo-$(CONFIG_RIVER_DTB) += \
 	sdm632-river-dvt1b-overlay.dtbo
 
 dtbo-$(CONFIG_OCEAN_DTB) += \
-	sdm632-ocean-na-evt1-overlay.dtbo \
-	sdm632-ocean-row-evt1-overlay.dtbo \
-	sdm632-ocean-na-evt2-overlay.dtbo \
-	sdm632-ocean-row-evt2-overlay.dtbo \
-	sdm632-ocean-row-dvt1a-overlay.dtbo \
-	sdm632-ocean-na-dvt1a-overlay.dtbo \
-	sdm632-ocean-row-dvt1b-overlay.dtbo \
-	sdm632-ocean-na-dvt1b-overlay.dtbo \
-	sdm632-ocean-row-dvt2-overlay.dtbo \
 	sdm632-ocean-row-pvt1-overlay.dtbo \
-	sdm632-ocean-na-dvt2-overlay.dtbo \
 	sdm632-ocean-na-pvt1-overlay.dtbo
 
 dtbo-$(CONFIG_GINNA_DTB) += \
@@ -33,13 +23,10 @@ dtbo-$(CONFIG_GINNA_DTB) += \
 	sdm632-ginna-evt3-overlay.dtbo
 
 dtbo-$(CONFIG_CHANNEL_DTB) += \
-	sdm632-channel-evt-overlay.dtbo \
-	sdm632-channel-dvt2-overlay.dtbo \
 	sdm632-channel-pvt-overlay.dtbo \
 	sdm632-channel-pvta-overlay.dtbo \
 	sdm632-channel-pvtb-overlay.dtbo \
 	sdm632-channel-pvtc-overlay.dtbo \
-	sdm632-channel-na-evt-overlay.dtbo \
 	sdm632-channel-na-dvt1b-overlay.dtbo \
 	sdm632-channel-tmo-dvt-overlay.dtbo
 
@@ -56,24 +43,6 @@ sdm632-river-na-evt2-overlay.dtbo-base := \
 sdm632-river-dvt1b-overlay.dtbo-base := \
        sdm632-river-base.dtb
 
-sdm632-ocean-na-evt1-overlay.dtbo-base := \
-       sdm632-ocean-base.dtb
-sdm632-ocean-row-evt1-overlay.dtbo-base := \
-       sdm632-ocean-base.dtb
-sdm632-ocean-na-evt2-overlay.dtbo-base := \
-       sdm632-ocean-base.dtb
-sdm632-ocean-row-evt2-overlay.dtbo-base := \
-       sdm632-ocean-base.dtb
-sdm632-ocean-row-dvt1a-overlay.dtbo-base := \
-       sdm632-ocean-base.dtb
-sdm632-ocean-na-dvt1a-overlay.dtbo-base := \
-       sdm632-ocean-base.dtb
-sdm632-ocean-row-dvt1b-overlay.dtbo-base := \
-       sdm632-ocean-base.dtb
-sdm632-ocean-na-dvt1b-overlay.dtbo-base := \
-       sdm632-ocean-base.dtb
-sdm632-ocean-row-dvt2-overlay.dtbo-base := \
-       sdm632-ocean-base.dtb
 sdm632-ocean-row-pvt1-overlay.dtbo-base := \
        sdm632-ocean-base.dtb
 sdm632-ocean-na-dvt2-overlay.dtbo-base := \
@@ -84,10 +53,6 @@ sdm632-ocean-na-pvt1-overlay.dtbo-base := \
 sdm632-ginna-evt-overlay.dtbo-base := \
 	sdm632-ginna-base.dtb
 
-sdm632-channel-evt-overlay.dtbo-base := \
-	sdm632-channel-base.dtb
-sdm632-channel-dvt2-overlay.dtbo-base := \
-	sdm632-channel-base.dtb
 sdm632-channel-pvt-overlay.dtbo-base := \
 	sdm632-channel-base.dtb
 sdm632-channel-pvta-overlay.dtbo-base := \
@@ -95,8 +60,6 @@ sdm632-channel-pvta-overlay.dtbo-base := \
 sdm632-channel-pvtb-overlay.dtbo-base := \
 	sdm632-channel-base.dtb
 sdm632-channel-pvtc-overlay.dtbo-base := \
-	sdm632-channel-base.dtb
-sdm632-channel-na-evt-overlay.dtbo-base := \
 	sdm632-channel-base.dtb
 sdm632-channel-na-dvt1b-overlay.dtbo-base := \
 	sdm632-channel-base.dtb
