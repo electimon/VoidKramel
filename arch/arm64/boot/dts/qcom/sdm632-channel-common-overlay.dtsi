@@ -17,7 +17,6 @@
 #include "dsi-panel-mot-djn-568-hd-vid.dtsi"
 #include "dsi-panel-mot-dsbj-569-hd-vid.dtsi"
 #include "dsi-panel-mot-dsbj-570-hd-vid.dtsi"
-#include "dsi-panel-mot-dummy-qhd-video.dtsi"
 #include "sdm632-camera-sensor-mot-channel-overlay.dtsi"
 #include "sdm632-moto-fps-channel-overlay.dtsi"
 

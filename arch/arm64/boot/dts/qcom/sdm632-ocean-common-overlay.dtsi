@@ -16,7 +16,6 @@
 #include "dsi-panel-mot-ofilm-622-720p-vid.dtsi"
 #include "dsi-panel-mot-tianma-622-720p-vid.dtsi"
 #include "dsi-panel-mot-csot-622-720p-vid.dtsi"
-#include "dsi-panel-mot-dummy-qhd-video.dtsi"
 #include "sdm632-camera-sensor-mot-ocean-overlay.dtsi"
 #include <dt-bindings/interrupt-controller/irq.h>
 
@@ -411,73 +410,11 @@
 		ti,sample_time = /bits/ 8 <0x1D>;
 		ti,drive_time = /bits/ 8 <0x10>;
 	};
-
-	aw8624_haptic@7f {
-		compatible = "awinic,aw8624_haptic";
-		reg = <0x7f>;
-		reset-gpio = <&pm8953_gpios 6 0>;
-		ram-update-delay;
-		real-i2c-addr = <0x5A>;
-
-		vib_f0_pre = < 2600 >;
-		vib_f0_cali_percen = < 7 >;
-		vib_cont_drv_lev = < 125 >;
-		vib_cont_drv_lvl_ov = < 155 >;
-		vib_cont_td = < 0xF06C >;
-		vib_cont_zc_thr = < 0x0FF1 >;  /* wt 0x0FF1*/
-		vib_cont_num_brk = < 3 >;
-		vib_f0_coeff = < 260 >;  /*Don't modify it*/
-		vib_duration_time = < 11 25 0 0 0 >;
-		vib_brake_ram_config = < 1 1 80 40 20 3 1 1    1 1 100 40 20 7 3 1    1 1 100 80 40 7 5 1 >;
-		vib_brake_cont_config = < 1 1 90 42 20 5 2 2 0 0 0  0  0  0 0 0 0 0 0   0  0  0 0 0 >;
-		vib_f0_trace_parameter = < 9 3 1 31 >;
-		vib_bemf_config = < 0 8 3 0xf8 >;
-		vib_sw_brake = < 0x2c >;
-		vib_wavseq = < 0 1 1 2 0 0 0 0 0 0 0 0 0 0 0 0 >; /*wavseq1-seq8 0x07-0x0E*/
-		vib_wavloop = < 0 6 1 15 0 0 0 0 0 0>;/*loop1-mainloog 0x0f-0x13*/
-		vib_td_brake = < 51264 46992 46992 >; /*level0  level1  level2*/
-		vib_tset = < 0x11 >;
-		vib_func_parameter1 = < 1000 >;
-		status = "disabled";
-	};
 };
 
 
 &i2c_3 {
 	status = "ok";
-
-	focaltech@38{
-		compatible = "focaltech,mmi";
-		reg = <0x38>;
-		interrupt-parent = <&tlmm>;
-		interrupts = <65 0x02>;
-		pinctrl-names = "pmx_ts_active","pmx_ts_suspend","pmx_ts_release";
-		pinctrl-0 = <&touch_int_active>;
-		pinctrl-1 = <&touch_int_suspend>;
-		pinctrl-2 = <&touch_release>;
-		focaltech,name = "ft8006u";
-		focaltech,family-id = <0xf0>;
-		focaltech,irq-gpio = <&tlmm 65 0x02>;
-		focaltech,display-coords = <0 0 720 1520>;
-		focaltech,max-touch-number = <10>;
-		focaltech,no-force-update;
-		focaltech,i2c-pull-up;
-		focaltech,group-id = <1>;
-		focaltech,hard-reset-delay-ms = <20>;
-		focaltech,soft-reset-delay-ms = <200>;
-		focaltech,num-max-touches = <10>;
-		focaltech,fw-delay-aa-ms = <30>;
-		focaltech,fw-delay-55-ms = <30>;
-		focaltech,fw-upgrade-id1 = <0x79>;
-		focaltech,fw-upgrade-id2 = <0x08>;
-		focaltech,fw-delay-readid-ms = <10>;
-		focaltech,fw-delay-era-flsh-ms = <2000>;
-		focaltech,fw-update-mmi;
-		focaltech,force-send-sleep;
-		focaltech,fw-auto-cal;
-		focaltech,resume-in-workqueue;
-		focaltech,ignore-id-check;
-	};
 
 	novatek@62 {
 		compatible = "novatek,NVT-ts";
