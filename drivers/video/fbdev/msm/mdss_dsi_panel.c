@@ -3165,6 +3165,7 @@ static int mdss_dsi_panel_reg_read(struct mdss_panel_data *pdata,
 	int ret;
 	struct dcs_cmd_req cmdreq;
 	struct mdss_dsi_ctrl_pdata *ctrl = NULL;
+	struct mdss_panel_info *pinfo;
 	struct dsi_cmd_desc reg_read_cmd = {
 		.dchdr.dtype = DTYPE_DCS_READ,
 		.dchdr.last = 1,
@@ -3189,7 +3190,9 @@ static int mdss_dsi_panel_reg_read(struct mdss_panel_data *pdata,
 	ctrl = container_of(pdata, struct mdss_dsi_ctrl_pdata, panel_data);
 	pr_debug("%s: Reading %zu bytes from 0x%02x\n", __func__, size, reg);
 
-	if (!ctrl)
+	if (ctrl)
+		pinfo = &ctrl->panel_data.panel_info;
+	else
 		return -EINVAL;
 
 	memset(&cmdreq, 0, sizeof(cmdreq));
