@@ -997,9 +997,9 @@ static int ilitek_platform_probe(struct spi_device *spi)
 #else
 	/*ilitek_platform_tp_hw_reset(true);*/
 	/* Soft reset */
-	core_config_ice_mode_enable();
-	core_config_set_watch_dog(false);
-	mdelay(10);
+	//core_config_ice_mode_enable();
+	//core_config_set_watch_dog(false);
+	//mdelay(10);
 	core_config_ic_reset();
 #endif
 
