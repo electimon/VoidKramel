@@ -4894,11 +4894,15 @@ int smblib_init(struct smb_charger *chg)
 		return -EINVAL;
 	}
 
+	mmi_init(chg);
+
 	return rc;
 }
 
 int smblib_deinit(struct smb_charger *chg)
 {
+	mmi_deinit(chg);
+
 	switch (chg->mode) {
 	case PARALLEL_MASTER:
 		if (chg->moisture_protection_enabled &&
