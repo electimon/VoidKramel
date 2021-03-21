@@ -408,7 +408,7 @@ static ssize_t breath_rate_ms_show(struct device *dev,
 	struct qpnp_led_dev *led =
 		container_of(led_cdev, struct qpnp_led_dev, cdev);
 
-	return snprintf(buf, PAGE_SIZE, "%d\n", led->led_setting.breath_rate_ms);
+	return snprintf(buf, PAGE_SIZE, "%lld\n", led->led_setting.breath_rate_ms);
 }
 
 static ssize_t breath_rate_ms_store(struct device *dev,
