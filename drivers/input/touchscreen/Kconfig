@@ -1479,5 +1479,6 @@ config TOUCHSCREEN_ILITEK_CHIPSET
           If unsure, say N.
 
 source "drivers/input/touchscreen/ilitek_mmi/Kconfig"
+source "drivers/input/touchscreen/focaltech_mmi/Kconfig"
 
 endif
