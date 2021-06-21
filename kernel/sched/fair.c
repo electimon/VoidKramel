@@ -7735,14 +7735,14 @@ unsigned long sched_get_rt_rq_util(int cpu)
 }
 
 /*
- * compute_energy_simple(): Estimates the energy that would be consumed if @p was
+ * compute_energy_simplified(): Estimates the energy that would be consumed if @p was
  * migrated to @dst_cpu. compute_energy_simple() predicts what will be the utilization
  * landscape of the * CPUs after the task migration, and uses the Energy Model
  * to compute what would be the energy if we decided to actually migrate that
  * task.
  */
 static long
-compute_energy_simple(struct task_struct *p, int dst_cpu, struct perf_domain *pd)
+compute_energy_simplified(struct task_struct *p, int dst_cpu, struct perf_domain *pd)
 {
 	long util, max_util, sum_util, energy = 0;
 	int cpu;
@@ -7865,7 +7865,7 @@ static int find_energy_efficient_cpu(struct task_struct *p, int prev_cpu)
 
 			/* Always use prev_cpu as a candidate. */
 			if (!prefer_idle && cpu == prev_cpu) {
-				prev_energy = compute_energy_simple(p, prev_cpu, head);
+				prev_energy = compute_energy_simplified(p, prev_cpu, head);
 				best_energy = min(best_energy, prev_energy);
 				continue;
 			}
@@ -7906,7 +7906,7 @@ static int find_energy_efficient_cpu(struct task_struct *p, int prev_cpu)
 
 		/* Evaluate the energy impact of using this CPU. */
 		if (!prefer_idle && max_spare_cap_cpu >= 0) {
-			cur_energy = compute_energy_simple(p, max_spare_cap_cpu, head);
+			cur_energy = compute_energy_simplified(p, max_spare_cap_cpu, head);
 			if (cur_energy < best_energy) {
 				best_energy = cur_energy;
 				best_energy_cpu = max_spare_cap_cpu;
