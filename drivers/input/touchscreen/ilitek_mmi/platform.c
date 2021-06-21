@@ -957,9 +957,10 @@ static int ilitek_platform_probe(struct spi_device *spi)
 			return -ENOMEM;
 		} else {
 		if (regulator_set_voltage(ipd->vdd, VDD_VOLTAGE, VDD_VOLTAGE) <
-		    0)
+		    0) {
 			ipio_err("Failed to set vdd %d.\n", VDD_VOLTAGE);
 			goto reg_vdd_put;
+		}
 		}
 
 		ipd->vdd_i2c = regulator_get(&ipd->client->dev, vcc_i2c_name);
@@ -969,10 +970,11 @@ static int ilitek_platform_probe(struct spi_device *spi)
 			goto reg_vdd_set_vtg;
 		} else {
 			if (regulator_set_voltage
-				(ipd->vdd_i2c, VDD_I2C_VOLTAGE, VDD_I2C_VOLTAGE) < 0)
+				(ipd->vdd_i2c, VDD_I2C_VOLTAGE, VDD_I2C_VOLTAGE) < 0) {
 				ipio_err("Failed to set vdd_i2c %d\n",
 				VDD_I2C_VOLTAGE);
 				goto reg_vcc_put;
+			}
 		}
 		ilitek_regulator_power_on(true);
 	} /* REGULATOR_POWER_ON */
